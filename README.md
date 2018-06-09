@@ -36,7 +36,7 @@ root@ubuntu:~/emuhookdetector# ldd emuhookdetector_dynamic
         /lib64/ld-linux-x86-64.so.2 (0x00007f01ab549000)
 ```
 
-The static report in a non hooked machine should be:
+The static report in a non hooked machine can be like this:
 
 ```
 root@ubuntu:~/emuhookdetector# cat report_static.txt
@@ -76,7 +76,7 @@ The dynamic report in a non hooked machine should be very similar to static repo
 
 Example: Compare the results & ldd output in a machine infected by vlany rootkit: https://github.com/mempodippy/vlany/
 
-The ldd output in a hooked machine by vlany rootkit can be:
+The ldd output in a hooked machine by vlany rootkit is:
 
 ```
 root@ubuntu:~/emuhookdetector# ldd emuhookdetector_static
@@ -95,7 +95,7 @@ root@ubuntu:~/emuhookdetector# ldd emuhookdetector_dynamic
         /lib64/ld-linux-x86-64.so.2 (0x00007f7263993000)
 ```
 
-As you can see the static exe should be empty and is linked!
+As you can see the static exe should be empty, but is linked!
 
 You also should compare the results of both reports to check if there are changes in the flow instructions (then can be hooked).
 
