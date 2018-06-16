@@ -79,6 +79,8 @@ static void hook_code64(uc_engine* uc, uint64_t address, uint32_t size, void* us
         return;
     }
 
+    cs_option(handle, CS_OPT_DETAIL, CS_OPT_ON);
+
     count = cs_disasm(handle, tmp, size, rip_converted, 0, &insn);
     if (count > 0)
     {
@@ -87,15 +89,14 @@ static void hook_code64(uc_engine* uc, uint64_t address, uint32_t size, void* us
         {
             printf("0x%"PRIx64":\t%s\t\t%s\n", insn[j].address, insn[j].mnemonic, insn[j].op_str);
             fprintf(report, "\t\t\t\t\t\t\t\t%s\t\t%s\n", insn[j].mnemonic, insn[j].op_str);
-            if (strcmp(insn[j].mnemonic, "jmp") == 0)
+            if (insn[j].id == X86_INS_JMP)
             {
                 puts("jmp detected");
-                if (strstr(insn[j].op_str, "qword ptr [rip +") != NULL)
+                if ((insn[j].detail->x86.disp) != 0)
                 {
-                    unsigned int rel_jmp = 0;
+                    int32_t rel_jmp = insn[j].detail->x86.disp;
                     uint64_t ptr_content = 0;
                     puts("relative to rip +");
-                    sscanf(insn[j].op_str, "qword ptr [rip +%x]", &rel_jmp);
                     printf("readded ptr+: 0x%x\n", rel_jmp);
                     ptr_content = rip_converted + size + rel_jmp;
                     printf("readding ptr content (rip+sizeinst+relval) from: 0x%"PRIx64 "\n", ptr_content);
