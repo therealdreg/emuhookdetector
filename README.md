@@ -1,6 +1,8 @@
 # emuhookdetector
 hook detector using emulation and comparing static with dynamic outputs
 
+Plese, consider make a donation: https://github.com/sponsors/therealdreg
+
 Warning!!: the code is bullshit (is only a beta prototype).
 
 MIT LICENSE - Copyright (c) emuhookdetector 0.1Beta-crap - January 2016
