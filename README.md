@@ -125,8 +125,7 @@ cd ..
 ```
 git clone https://github.com/David-Reguera-Garcia-Dreg/emuhookdetector.git
 cd emuhookdetector
-gcc -pthread -o emuhookdetector_dynamic emuhookdetector.c -lunicorn -lcapstone
-gcc -static -pthread -o emuhookdetector_static emuhookdetector.c /usr/lib/libunicorn.a /usr/lib/libcapstone.a -lm
+make
 ```
 
 The output should of ldd should be something like:
